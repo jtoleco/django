@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Django AJAX Update</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+  <form id="update-form">
+    <input type="hidden" id="item-id" value="{{ item.id }}">
+    <input type="text" id="new-value" placeholder="Enter new value">
+    <button id="update-button">Update</button>
+  </form>
+
+  <div id="item-value">{{ item.value }}</div>
+
+  <script>
+    $(document).ready(function() {
+      $("#update-button").click(function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Get the new value and item ID
+        var newValue = $("#new-value").val();
+        var itemId = $("#item-id").val();
+
+        // Send AJAX request to Django view
+        $.ajax({
+          url: "/polls/update_item/", // Replace with your Django view URL
+          type: "POST",
+          data: {
+            'item_id': itemId,
+            'new_value': newValue,
+            'csrfmiddlewaretoken': '{{ csrf_token }}' // Include CSRF token
+          },
+          success: function(response) {
+            // Update the displayed value
+            $("#item-value").text(response.new_value);
+          },
+          error: function(error) {
+            console.error("Error updating item:", error);
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
