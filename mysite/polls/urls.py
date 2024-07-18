@@ -8,8 +8,10 @@ urlpatterns = [
     path("<int:pk>/", views.DetailView.as_view(), name="detail"),
     path("<int:pk>/results/", views.ResultsView.as_view(), name="results"),
     path("<int:question_id>/vote/", views.vote, name="vote"),
+    #path('update_item/', views.update_item, name='update_item'),
     path('update_item/', views.update_item, name='update_item'),
     path('ajax/', views.ajax, name='ajax'),
+    path('nonajax/', views.nonajax, name='nonajax'),
 ]
 '''
 urlpatterns = [
