@@ -1,6 +1,6 @@
 from django.db.models import F
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from polls.models import Choice, Question, Item
 from django.views import generic
@@ -60,7 +60,14 @@ def ajax(request):
     }
     return render(request, 'polls/ajax.html', context)
     
+def nonajax(request):
+    item = Item.objects.get(pk=1)  # Replace 1 with the actual ID of the item you want to pass
+    context = {
+        'item': item,
+    }
+    return render(request, 'polls/nonajax.html', context)
     
+'''
 @csrf_exempt
 def update_item(request):
   print(f'update_item view def')
@@ -80,6 +87,22 @@ def update_item(request):
       return JsonResponse({'error': 'Item not found'}, status=404)
 
   return JsonResponse({'error': 'Invalid request'}, status=400)
+'''
+
+def update_item(request):
+  print(f'update_item new view def')
+  if request.method == 'POST':
+    item_id = request.POST.get('item_id')
+    new_value = request.POST.get('new_value')
+
+    item = Item.objects.get(pk=item_id)
+    item.value = new_value
+    item.save()
+
+    return redirect('polls:nonajax')  # Redirect to the same view
+  else:
+    # Handle GET request (if needed)
+    return render(request, 'polls/nonajax.html')
 
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
