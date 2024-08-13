@@ -1,0 +1,45 @@
+Group	Process 	Subprocess	PIC	Start	End	MH	Status 
+Frontend	
+Initial Display	
+		1. Retrieve/GET data from backend using axios for the Company List(Company DB), Team List(Team DB), Anken Info Area(Anken Info DB), Quotation Display(Anken DB) and Quotation Input Area(Quotation DB)	Tine	12-Aug			
+		2. Show the list of company names under the company selection box VTable.	Alvi				
+		3. Show the list of team names under the team selection box VTable.	Alvi				
+		4. Show the Anken Info under the Anken Info VTable. (read only)	Tine	9-Aug	9-Aug	5	
+		5. Show the Quotation Display values (read only)	Joeff	9-Aug	9-Aug	5	DONE
+		6. Show only the lines(rows) based on the existing Quotation inputs that was previously registered.	Alvi				
+Update Button	
+		1. Update 2 DB with the latest info of the Quotation Input Area (Quotation DB) and Quotation Display(Anken DB)	Joeff				
+		2. Perform re-computation if it has not been pressed yet.	Joeff				
+		3. Investigate how to determine which rows have been edited before update to DB	Joeff				
+		4. Create/POST a record to the Change History DB based on the updated values.	Joeff				
+Filter Button	
+		1. Narrow the Quotation Input display area based on the selected company and team. 
+It will look into the  PIC Group column."	Joeff	12-Aug	12-Aug	5	DONE
+		* When both company and team are selected, only narrow by team.					
+Reference Output Button	
+		1. Output the Quotation Request and other uploaded files related to the ANK Devt. Request No.	Mias				
+		2. If no materials present, output "Reference Material not found"	Mias	12-Aug			
+Re-Calculation button	
+		1. Redisplay based on the Quotation Input (Please refer to formula)	Mias				
+UI	
+		1. Fix display with actual strings and dimensions for components.					
+							
+							
+Group	Process 	Subprocess	PIC			MH	Status 
+Backend	
+Initial Display	
+		1. Create endpoint to GET data of  Company List(Company DB)	Elwin				
+		2. Create endpoint to GET data of Team List(Team DB)	Elwin				
+		3. Create endpoint to GET data of Anken Info Area(Anken Info DB)	Elwin				
+		4. Create endpoint to GET data of Quotation Display(Anken DB)	Angie	9-Aug	9-Aug	2	DONE
+		5. Create endpoint to GET data of Quotation Input Area(Quotation DB)	Angie	9-Aug	9-Aug	3	DONE
+Update Button	
+		1. Create endpoint to POST data from values in the Quotation Display Area to the Anken DB. Use the "ANK DEVT REL. NO " when creating the record.	Elwin				
+		2. Create endpoint to POST data from values in the Quotation Input Area to the Quotation DB. Use the "ANK DEVT REL. NO " when creating the record. 	Angie	12-Aug			
+Reference Output Button	
+		1. Create GET endpoint to output the uploaded excel file related to this Anken Number	Angie
+Filter Button
+		1. Create endpoint to GET filtered data using company and team.
+		
+		
+		
